@@ -1,13 +1,13 @@
-# [Quiet Hacker News](http://quiethn.com)
+# [Quiet Hacker News](https://quiethackernews.com)
 
-https://speak.sh/posts/quiet-hacker-news
+[![License](https://img.shields.io/github/license/fuzzingbits/quiet-hacker-news)](https://github.com/fuzzingbits/quiet-hacker-news/blob/master/LICENSE)
+[![Documentation](https://godoc.org/github.com/fuzzingbits/quiet-hacker-news?status.svg)](http://godoc.org/github.com/fuzzingbits/quiet-hacker-news)
+[![Docker Image](https://img.shields.io/badge/container-Docker-blue)](https://hub.docker.com/r/fuzzingbits/quiet-hacker-news)
+[![Go Report Card](https://goreportcard.com/badge/github.com/fuzzingbits/quiet-hacker-news)](https://goreportcard.com/report/github.com/fuzzingbits/quiet-hacker-news)
+[![Go](https://github.com/fuzzingbits/quiet-hacker-news/workflows/Go/badge.svg)](https://github.com/fuzzingbits/quiet-hacker-news/actions)
+[![Coverage Status](https://coveralls.io/repos/github/fuzzingbits/quiet-hacker-news/badge.svg?branch=master)](https://coveralls.io/github/fuzzingbits/quiet-hacker-news?branch=master)
 
----
+A quieter approach to Hacker News. Links and nothing else.
 
-### Install
-
-1. `git clone git@github.com:tomspeak/quiet-hacker-news.git`
-
-1. `PORT=8080 ENV="dev" go run main.go`
-
-1. Navigate to http://localhost:8080
+### Usage
+Coming soon.

@@ -1,4 +1,8 @@
-.idea/
-tmp/
-main
-*.pem
+# Temporary files
+/var/
+
+# Secrets
+/.env
+
+# Go
+__debug_bin
