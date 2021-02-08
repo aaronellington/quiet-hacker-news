@@ -1,12 +1,12 @@
 # [Quiet Hacker News](https://quiethackernews.com)
 
+A quieter approach to Hacker News. Links and nothing else.
+
+[![GitHub Actions](https://github.com/fuzzingbits/quiet-hacker-news/workflows/Go/badge.svg)](https://github.com/fuzzingbits/quiet-hacker-news/actions)
+[![Coverage Status](https://coveralls.io/repos/github/fuzzingbits/quiet-hacker-news/badge.svg?branch=main)](https://coveralls.io/github/fuzzingbits/quiet-hacker-news?branch=main)
+[![Go Report Card](https://goreportcard.com/badge/github.com/fuzzingbits/quiet-hacker-news)](https://goreportcard.com/report/github.com/fuzzingbits/quiet-hacker-news)
 [![License](https://img.shields.io/github/license/fuzzingbits/quiet-hacker-news)](https://github.com/fuzzingbits/quiet-hacker-news/blob/main/LICENSE)
 [![Docker Image](https://img.shields.io/badge/container-Docker-blue)](https://hub.docker.com/r/fuzzingbits/quiet-hacker-news)
-[![Go Report Card](https://goreportcard.com/badge/github.com/fuzzingbits/quiet-hacker-news)](https://goreportcard.com/report/github.com/fuzzingbits/quiet-hacker-news)
-[![Go](https://github.com/fuzzingbits/quiet-hacker-news/workflows/Go/badge.svg)](https://github.com/fuzzingbits/quiet-hacker-news/actions)
-[![Coverage Status](https://coveralls.io/repos/github/fuzzingbits/quiet-hacker-news/badge.svg?branch=main)](https://coveralls.io/github/fuzzingbits/quiet-hacker-news?branch=main)
-
-A quieter approach to Hacker News. Links and nothing else.
 
 ![screenshot](/ops/screenshot.png)
 
