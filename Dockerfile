@@ -2,7 +2,7 @@ FROM golang:1.15-buster as goBuilder
 WORKDIR /project
 COPY . .
 RUN rm -rf .env
-RUN make
+RUN make full
 
 FROM debian:buster
 WORKDIR /project
