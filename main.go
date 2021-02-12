@@ -3,20 +3,78 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
+	"net/http"
+	"time"
 
+	"github.com/fuzzingbits/forge"
 	"github.com/fuzzingbits/quiet-hacker-news/pkg/qhn"
 )
 
+// Important paths to be used later
+const (
+	PublicPath = "./static"
+)
+
+// Configuration is the structure of the configuration options
+type Configuration struct {
+	Host string
+	Port string `env:"PORT"`
+}
+
 func main() {
+	// Get the configuration
+	configuration, err := getConfiguration()
+	if err != nil {
+		panic(err)
+	}
+
+	// Setup the server
+	server := http.Server{
+		Addr:         fmt.Sprintf("%s:%s", configuration.Host, configuration.Port),
+		Handler:      getHandler(),
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+
+	// Start the server
+	log.Printf("Listening on http://%s", server.Addr)
+	log.Fatal(server.ListenAndServe())
+}
+
+func getConfiguration() (*Configuration, error) {
+	// Setup defaults
+	configuration := &Configuration{
+		Host: "0.0.0.0",
+		Port: "9090",
+	}
+
+	if err := forge.ParseEnvironment(configuration); err != nil {
+		return nil, err
+	}
+
+	return configuration, nil
+}
+
+func getHandler() http.Handler {
 	app := qhn.NewApp()
 
-	// If a custom port number is specified, override the default
-	if port := os.Getenv("PORT"); port != "" {
-		app.Addr = fmt.Sprintf("0.0.0.0:%s", port)
+	// Build the primary router
+	router := &forge.Router{
+		// NotFoundHander: app,
 	}
 
-	if err := app.Start(); err != nil {
-		log.Fatal(err)
+	router.Handle("/", app)
+
+	// Configure static file serving
+	static := &forge.Static{
+		FileSystem:      http.Dir(PublicPath),
+		NotFoundHandler: router,
 	}
+
+	// Configure the logger
+	logger := &forge.Logger{
+		Handler: static,
+	}
+
+	return logger
 }

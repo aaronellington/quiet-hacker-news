@@ -1,13 +1,2 @@
-github.com/fuzzingbits/forge-wip v0.0.1 h1:lTLvGh+I/I2+dWRhBZiqp6qYY/UWb8psBIqUxk3vrFg=
-github.com/fuzzingbits/forge-wip v0.0.1/go.mod h1:Iuynz1cYRVoQZqXvRsVspeC9h5sH4TQqWjMgmdnDSvU=
-github.com/fuzzingbits/forge-wip v0.0.2 h1:FpEJvafZu7y5CdCgK0EuSI1w2MFQy4ejJH3Pf71XXHU=
-github.com/fuzzingbits/forge-wip v0.0.2/go.mod h1:0FwEQu63BK2I2ejzLsPgLvdosxDhox8UWoXI0gqQuGI=
-github.com/rollbar/rollbar-go v1.2.0/go.mod h1:czC86b8U4xdUH7W2C6gomi2jutLm8qK0OtrF5WMvpcc=
-golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
-golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e h1:3G+cUijn7XD+S4eJFddp53Pv7+slrESplyjG25HgL+k=
-golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e/go.mod h1:qpuaurCH72eLCgpAm/N6yyVIVM9cpaDIP3A8BGJEC5A=
-golang.org/x/net v0.0.0-20200602114024-627f9648deb9 h1:pNX+40auqi2JqRfOP1akLGtYcn15TUbkhwuCO3foqqM=
-golang.org/x/net v0.0.0-20200602114024-627f9648deb9/go.mod h1:qpuaurCH72eLCgpAm/N6yyVIVM9cpaDIP3A8BGJEC5A=
-golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
-golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
-golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
+github.com/fuzzingbits/forge v0.0.8 h1:/Mj6wWWkKVSbZrla1VFFDyDHKjJtxcOFanCAhHKrNBQ=
+github.com/fuzzingbits/forge v0.0.8/go.mod h1:bIkf7p91AJlo0e81Kpj/siieDUiDKy0dBIKtUgqnV5U=
