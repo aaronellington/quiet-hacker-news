@@ -42,6 +42,7 @@ test: ## Run the tests
 	@go tool cover -func var/coverage.txt | awk '/^total/{print $$1 " " $$3}'
 
 clean: ## Remove all files listed in .gitignore
+	@git init > /dev/null
 	git clean -Xdf
 
 post-lint:
