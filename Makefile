@@ -1,32 +1,28 @@
-GO_PATH := $(shell go env GOPATH 2> /dev/null)
-MODULE := $(shell awk '/^module/ {print $$2}' go.mod)
-NAMESPACE := $(shell awk -F "/" '/^module/ {print $$(NF-1)}' go.mod)
-PROJECT_NAME := $(shell awk -F "/" '/^module/ {print $$(NF)}' go.mod)
-PATH := $(GO_PATH)/bin:$(PATH)
+.PHONY: help docker build build-go lint lint-go test test-go clean clean-full copy-config post-lint
 
-help:
-	@echo "Makefile targets:"
+SHELL=/bin/bash -o pipefail
+
+.DEFAULT_GOAL := help
+GO_PATH := $(shell go env GOPATH 2> /dev/null)
+
+help: ## Display general help about this command
+	@echo 'Makefile targets:'
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' Makefile \
 	| sed -n 's/^\(.*\): \(.*\)##\(.*\)/    \1 :: \3/p' \
 	| column -t -c 1  -s '::'
 
-full: clean lint test build ## Clean, test, and build the application
+docker:
+	docker build -t fuzzingbits/quiet-hacker-news:latest .
 
-build: ## Build the application
-	go build -o var/${PROJECT_NAME} .
+build: build-go ## Build the application
 
-docker: clean ## Build the Docker Image
-	docker build -t $(NAMESPACE)/$(PROJECT_NAME):latest .
+build-go:
+	go build -ldflags='-s -w' -o $(CURDIR)/var/quiet-hacker-news .
+	@ln -sf $(CURDIR)/var/quiet-hacker-news $(GO_PATH)/bin/quiet-hacker-news
 
-publish: docker ## Build and publish the Docker Image
-	docker push $(NAMESPACE)/$(PROJECT_NAME):latest
+lint: lint-go ## Lint the application
 
-watch: ## Run and auto-recompile on file changes
-	@cd ; go get github.com/codegangsta/gin
-	clear
-	gin --all --immediate --path .. --build . --bin var/gin run
-
-lint: ## Check the code for errors
+lint-go:
 	@cd ; go get golang.org/x/lint/golint
 	@cd ; go get golang.org/x/tools/cmd/goimports
 	go get -d ./...
@@ -36,16 +32,20 @@ lint: ## Check the code for errors
 	golint -set_exit_status=1 ./...
 	goimports -w .
 
-test: ## Run the tests
+test: test-go ## Test the application
+
+test-go:
 	@mkdir -p var/
 	@go test -race -cover -coverprofile  var/coverage.txt ./...
 	@go tool cover -func var/coverage.txt | awk '/^total/{print $$1 " " $$3}'
 
-clean: ## Remove all files listed in .gitignore
-	@git init > /dev/null
-	git clean -Xdf
+clean: ## Remove files listed in .gitignore (possibly with some exceptions)
+	git clean -Xdff
+
+clean-full:
+	git clean -Xdff
+
+copy-config: ## Copy missing config files into place
 
 post-lint:
-	@git diff --exit-code --quiet || (echo "There should not be any changes after the lint runs" && git status && exit 1;)
-
-pipeline: full post-lint
+	@git diff --exit-code --quiet || (echo 'There should not be any changes after the lint runs' && git status && exit 1;)

@@ -12,7 +12,7 @@ import (
 
 // Important paths to be used later
 const (
-	PublicPath = "./static"
+	PublicPath = "./assets/static"
 )
 
 // Configuration is the structure of the configuration options
@@ -45,7 +45,7 @@ func getConfiguration() (*Configuration, error) {
 	// Setup defaults
 	configuration := &Configuration{
 		Host: "0.0.0.0",
-		Port: "9090",
+		Port: "8000",
 	}
 
 	if err := forge.ParseEnvironment(configuration); err != nil {

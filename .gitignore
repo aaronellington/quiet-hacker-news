@@ -1,8 +1,10 @@
-# Temporary files
+# System Files
+/.vscode/
+/.idea/
+.DS_Store
+
+# Temporary Files
 /var/
 
-# Secrets
-/.env
-
-# Go
+# Go Files
 __debug_bin

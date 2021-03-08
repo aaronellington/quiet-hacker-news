@@ -15,7 +15,7 @@ func NewApp() *App {
 	app := &App{
 		PageSize:        30,
 		RefreshInterval: time.Hour * 1,
-		indexTemplate:   template.Must(template.ParseFiles("templates/index.go.html")),
+		indexTemplate:   template.Must(template.ParseFiles("assets/templates/index.go.html")),
 		hackerNewsAPI:   hackernews.Client{},
 	}
 

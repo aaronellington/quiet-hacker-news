@@ -1,15 +1,11 @@
-FROM golang:1.15-buster as goBuilder
-WORKDIR /project
+FROM golang:1.16-buster as goBuilder
+WORKDIR /build-staging
 COPY . .
-RUN rm -rf .env
-RUN make full
+RUN make clean lint test build
 
 FROM debian:buster
-WORKDIR /project
-COPY --from=goBuilder /project/var/quiet-hacker-news /usr/local/bin/
-COPY --from=goBuilder /project/templates/ ./templates
-COPY --from=goBuilder /project/static/ ./static
-RUN apt-get update
-RUN apt-get install -y ca-certificates
-CMD ["quiet-hacker-news"]
-EXPOSE 9090
+WORKDIR /app
+COPY --from=goBuilder /build-staging/var/quiet-hacker-news ./quiet-hacker-news
+COPY --from=goBuilder /build-staging/assets/ ./assets
+CMD ["./quiet-hacker-news"]
+EXPOSE 8000
