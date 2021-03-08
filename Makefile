@@ -4,6 +4,7 @@ SHELL=/bin/bash -o pipefail
 
 .DEFAULT_GOAL := help
 GO_PATH := $(shell go env GOPATH 2> /dev/null)
+PATH := $(GO_PATH)/bin:$(PATH)
 
 help: ## Display general help about this command
 	@echo 'Makefile targets:'
