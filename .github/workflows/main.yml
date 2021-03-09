@@ -9,18 +9,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
+
       - name: Set up Go
         uses: actions/setup-go@v1
         with:
-          go-version: 1.16
+          go-version: 1.15
 
       - name: Check out code
         uses: actions/checkout@v2
 
       - name: Build
-        run: make clean lint test build post-lint
+        run: make lint test build post-lint
 
       - name: Convert coverage to lcov
         uses: jandelgado/gcov2lcov-action@v1.0.0
