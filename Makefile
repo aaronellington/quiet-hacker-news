@@ -18,6 +18,7 @@ docker:
 build: build-go ## Build the application
 
 build-go:
+	@go generate
 	go build -ldflags='-s -w' -o $(CURDIR)/var/quiet-hacker-news .
 	@ln -sf $(CURDIR)/var/quiet-hacker-news $(GO_PATH)/bin/quiet-hacker-news
 
