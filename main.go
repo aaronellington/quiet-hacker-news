@@ -8,11 +8,7 @@ import (
 
 	"github.com/fuzzingbits/forge"
 	"github.com/fuzzingbits/quiet-hacker-news/pkg/qhn"
-)
-
-// Important paths to be used later
-const (
-	PublicPath = "./assets/static"
+	"github.com/fuzzingbits/quiet-hacker-news/resources"
 )
 
 // Configuration is the structure of the configuration options
@@ -67,7 +63,7 @@ func getHandler() http.Handler {
 
 	// Configure static file serving
 	static := &forge.Static{
-		FileSystem:      http.Dir(PublicPath),
+		FileSystem:      http.FS(resources.Public),
 		NotFoundHandler: router,
 	}
 

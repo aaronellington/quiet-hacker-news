@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/fuzzingbits/quiet-hacker-news/pkg/hackernews"
+	"github.com/fuzzingbits/quiet-hacker-news/resources"
 )
 
 // NewApp sets up and reteurns a new instance of App
@@ -15,7 +16,7 @@ func NewApp() *App {
 	app := &App{
 		PageSize:        30,
 		RefreshInterval: time.Hour * 1,
-		indexTemplate:   template.Must(template.ParseFiles("assets/templates/index.go.html")),
+		indexTemplate:   resources.Index,
 		hackerNewsAPI:   hackernews.Client{},
 	}
 
