@@ -1,4 +1,4 @@
-# [Quiet Hacker News](https://quiethackernews.com)
+# [Quiet Hacker News](https://quiet-hacker-news.appbyte.net/)
 
 A quieter approach to Hacker News. Links and nothing else.
 
