@@ -1,4 +1,4 @@
-.PHONY: help docker build build-go lint lint-go test test-go clean clean-full copy-config post-lint
+.PHONY: help docker build build-go lint lint-go test test-go clean clean-full copy-config git-change-check
 
 SHELL=/bin/bash -o pipefail
 
@@ -51,5 +51,5 @@ clean-full:
 
 copy-config: ## Copy missing config files into place
 
-post-lint:
-	@git diff --exit-code --quiet || (echo 'There should not be any changes after the lint runs' && git status && exit 1;)
+git-change-check:
+	@git diff --exit-code --quiet || (echo 'There should not be any changes at this point' && git status && exit 1;)

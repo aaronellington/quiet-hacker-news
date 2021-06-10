@@ -20,16 +20,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build
-        run: make lint test build post-lint
-
-      - name: Convert coverage to lcov
-        uses: jandelgado/gcov2lcov-action@v1.0.0
-        with:
-          infile: var/coverage.txt
-          outfile: var/coverage.lcov
-
-      - name: Upload coverage to Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: var/coverage.lcov
+        run: make lint test build git-change-check
