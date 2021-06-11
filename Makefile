@@ -1,4 +1,4 @@
-.PHONY: help docker build build-go lint lint-go test test-go clean clean-full copy-config git-change-check
+.PHONY: help full full-go docker build build-go lint lint-go test test-go clean clean-full copy-config git-change-check
 
 SHELL=/bin/bash -o pipefail
 
@@ -11,6 +11,10 @@ help: ## Display general help about this command
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' Makefile \
 	| sed -n 's/^\(.*\): \(.*\)##\(.*\)/    \1 :: \3/p' \
 	| column -t -c 1  -s '::'
+
+full: lint test build
+
+full-go: lint-go test-go build-go
 
 docker:
 	docker build -t fuzzingbits/quiet-hacker-news:latest .
