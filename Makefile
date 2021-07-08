@@ -29,8 +29,8 @@ build-go:
 lint: lint-go ## Lint the application
 
 lint-go:
-	@cd ; go get golang.org/x/lint/golint
-	@cd ; go get golang.org/x/tools/cmd/goimports
+	@go install golang.org/x/lint/golint@latest
+	@go install golang.org/x/tools/cmd/goimports@latest
 	go get -d ./...
 	go mod tidy
 	gofmt -s -w .
@@ -56,8 +56,8 @@ clean-full:
 copy-config: ## Copy missing config files into place
 
 projectl:
-	@cd ; go get github.com/aaronellington/projectl
-	projectl
+	@go install github.com/aaronellington/projectl@latest
+	$(shell go env GOPATH)/bin/projectl
 
 git-change-check:
 	@git diff --exit-code --quiet || (echo 'There should not be any changes at this point' && git status && exit 1;)

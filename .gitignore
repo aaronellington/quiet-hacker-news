@@ -6,6 +6,10 @@
 # Temporary Files
 /var/
 
+# Environment Files
+/.env.local
+/.env.*.local
+
 # Go Files
 __debug_bin
 debug.test

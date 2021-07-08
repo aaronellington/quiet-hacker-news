@@ -5,6 +5,8 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: '22 0 * * *'
 
 jobs:
   build:
@@ -16,11 +18,8 @@ jobs:
         with:
           go-version: 1.16
 
-      - name: Install projectl
-        run: cd ; go get github.com/aaronellington/projectl
-
       - name: Check out code
         uses: actions/checkout@v2
 
       - name: Build
-        run: make full git-change-check projectl git-change-check
+        run: make full projectl git-change-check
