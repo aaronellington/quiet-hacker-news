@@ -1,4 +1,4 @@
-FROM golang:1.16-buster as goBuilder
+FROM golang:1.17-buster as goBuilder
 WORKDIR /build-staging
 COPY . .
 RUN make clean-full
