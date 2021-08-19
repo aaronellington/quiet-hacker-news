@@ -26,8 +26,10 @@ func main() {
 	app := &hammer.App{
 		ListenAddress: fmt.Sprintf("%s:%s", configuration.Host, configuration.Port),
 		Logger:        &workbench.LoggerJSON{Writer: os.Stdout},
-		Routes: map[string]http.Handler{
-			"/": qhn.NewApp(),
+		Handler: &forge.Router{
+			Routes: map[string]http.Handler{
+				"/": qhn.NewApp(),
+			},
 		},
 		Middleware: []forge.Middleware{
 			&forge.Static{
