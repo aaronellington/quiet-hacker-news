@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
-	"time"
+	"os"
 
 	"github.com/fuzzingbits/forge"
+	"github.com/fuzzingbits/forge/hammer"
+	"github.com/fuzzingbits/forge/workbench"
 	"github.com/fuzzingbits/quiet-hacker-news/pkg/qhn"
 	"github.com/fuzzingbits/quiet-hacker-news/resources"
 )
@@ -19,25 +20,26 @@ type Configuration struct {
 
 func main() {
 	// Get the configuration
-	configuration, err := getConfiguration()
-	if err != nil {
-		panic(err)
+	configuration := getConfiguration()
+
+	// Build the hammer.App
+	app := &hammer.App{
+		ListenAddress: fmt.Sprintf("%s:%s", configuration.Host, configuration.Port),
+		Logger:        &workbench.LoggerJSON{Writer: os.Stdout},
+		Routes: map[string]http.Handler{
+			"/": qhn.NewApp(),
+		},
+		Middleware: []forge.Middleware{
+			&forge.Static{
+				FileSystem: http.FS(resources.Public),
+			},
+		},
 	}
 
-	// Setup the server
-	server := http.Server{
-		Addr:         fmt.Sprintf("%s:%s", configuration.Host, configuration.Port),
-		Handler:      getHandler(),
-		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
-	}
-
-	// Start the server
-	log.Printf("Listening on http://%s", server.Addr)
-	log.Fatal(server.ListenAndServe())
+	app.Run()
 }
 
-func getConfiguration() (*Configuration, error) {
+func getConfiguration() *Configuration {
 	// Setup defaults
 	configuration := &Configuration{
 		Host: "0.0.0.0",
@@ -45,32 +47,8 @@ func getConfiguration() (*Configuration, error) {
 	}
 
 	if err := forge.ParseEnvironment(configuration); err != nil {
-		return nil, err
+		panic(err)
 	}
 
-	return configuration, nil
-}
-
-func getHandler() http.Handler {
-	app := qhn.NewApp()
-
-	// Build the primary router
-	router := &forge.Router{
-		// NotFoundHander: app,
-	}
-
-	router.Handle("/", app)
-
-	// Configure static file serving
-	static := &forge.Static{
-		FileSystem:      http.FS(resources.Public),
-		NotFoundHandler: router,
-	}
-
-	// Configure the logger
-	logger := &forge.Logger{
-		Handler: static,
-	}
-
-	return logger
+	return configuration
 }

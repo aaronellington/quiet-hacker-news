@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/fuzzingbits/forge"
 	"github.com/fuzzingbits/quiet-hacker-news/pkg/hackernews"
 	"github.com/fuzzingbits/quiet-hacker-news/resources"
 )
@@ -47,7 +48,5 @@ func (app *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "text/html")
-	w.WriteHeader(http.StatusOK)
-	w.Write(responseBytes)
+	forge.RespondHTML(w, http.StatusOK, responseBytes)
 }
