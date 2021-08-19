@@ -1,4 +1,4 @@
-.PHONY: help full full-go docker build build-go lint lint-go test test-go clean clean-full copy-config projectl git-change-check
+.PHONY: help full full-go docker build build-go lint lint-go test test-go watch-go clean clean-full copy-config projectl git-change-check
 
 SHELL=/bin/bash -o pipefail
 
@@ -44,6 +44,11 @@ test-go:
 	@mkdir -p var/
 	@go test -race -cover -coverprofile  var/coverage.txt ./...
 	@go tool cover -func var/coverage.txt | awk '/^total/{print $$1 " " $$3}'
+
+watch-go:
+	@go install github.com/codegangsta/gin@latest
+	clear
+	gin --all --immediate --path . --build . --bin var/gin --port 8000 run
 
 clean: ## Remove files listed in .gitignore (possibly with some exceptions)
 	@git init 2> /dev/null
