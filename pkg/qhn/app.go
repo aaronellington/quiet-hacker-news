@@ -1,24 +1,29 @@
 package qhn
 
 import (
-	"bytes"
+	"fmt"
 	"html/template"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/fuzzingbits/forge"
+	"github.com/fuzzingbits/forge/workbench"
 	"github.com/fuzzingbits/quiet-hacker-news/pkg/hackernews"
 	"github.com/fuzzingbits/quiet-hacker-news/resources"
 )
 
-// NewApp sets up and reteurns a new instance of App
-func NewApp() *App {
+// NewApp builds a new App instance using the provided config
+func NewApp(config Config) *App {
 	app := &App{
-		PageSize:        30,
-		RefreshInterval: time.Hour * 1,
-		indexTemplate:   resources.Index,
-		hackerNewsAPI:   hackernews.Client{},
+		// Config
+		listenAddress:   fmt.Sprintf("%s:%d", config.Host, config.Port),
+		pageSize:        config.PageSize,
+		refreshInterval: time.Hour * config.RefreshIntervalHours,
+		// Internal
+		logger:        &workbench.LoggerJSON{Writer: os.Stdout},
+		indexTemplate: resources.Index,
+		hackerNewsAPI: hackernews.Client{},
 	}
 
 	go app.startCacheUpdateLoop()
@@ -26,27 +31,39 @@ func NewApp() *App {
 	return app
 }
 
-// App is an instance of the QHN App
+// App for my website
 type App struct {
-	PageSize        int
-	RefreshInterval time.Duration
+	listenAddress   string
+	logger          workbench.Logger
+	pageSize        int
+	refreshInterval time.Duration
 	indexTemplate   *template.Template
-	itemCache       []hackernews.Item
 	hackerNewsAPI   hackernews.Client
+	itemCache       []hackernews.Item
 }
 
-func (app *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	bodyBuffer := bytes.NewBuffer([]byte{})
-	if err := app.indexTemplate.Execute(bodyBuffer, app.itemCache); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+// Handler to be used by hammer
+func (app *App) Handler() http.Handler {
+	router := &forge.Router{
+		Routes: map[string]http.Handler{
+			"/": http.HandlerFunc(app.indexHandler),
+		},
 	}
 
-	responseBytes, err := ioutil.ReadAll(bodyBuffer)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+	static := &forge.Static{
+		FileSystem:      http.FS(resources.Public),
+		NotFoundHandler: router,
 	}
 
-	forge.RespondHTML(w, http.StatusOK, responseBytes)
+	return static
+}
+
+// Logger to be used by hammer
+func (app *App) Logger() workbench.Logger {
+	return app.logger
+}
+
+// ListenAddress to be used by hammer
+func (app *App) ListenAddress() string {
+	return app.listenAddress
 }

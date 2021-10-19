@@ -27,7 +27,7 @@ func (app *App) UpdateCache() error {
 // Update the cache immediately and then once per interval
 func (app *App) startCacheUpdateLoop() {
 	app.cacheUpdateTick()
-	for range time.NewTicker(app.RefreshInterval).C {
+	for range time.NewTicker(app.refreshInterval).C {
 		app.cacheUpdateTick()
 	}
 }
@@ -60,7 +60,7 @@ func (app *App) pullCacheItems() ([]hackernews.Item, error) {
 
 		items = append(items, item)
 
-		if len(items) >= app.PageSize {
+		if len(items) >= app.pageSize {
 			break
 		}
 	}
