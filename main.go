@@ -13,6 +13,7 @@ func main() {
 }
 
 func getConfig() qhn.Config {
+	// Set defaults
 	config := qhn.Config{
 		Host:                 "0.0.0.0",
 		Port:                 8000,
