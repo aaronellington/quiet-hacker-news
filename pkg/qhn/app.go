@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/fuzzingbits/forge"
-	"github.com/fuzzingbits/forge/workbench"
 	"github.com/fuzzingbits/quiet-hacker-news/pkg/hackernews"
 	"github.com/fuzzingbits/quiet-hacker-news/resources"
 )
@@ -21,7 +20,7 @@ func NewApp(config Config) *App {
 		pageSize:        config.PageSize,
 		refreshInterval: time.Hour * config.RefreshIntervalHours,
 		// Internal
-		logger:        &workbench.LoggerJSON{Writer: os.Stdout},
+		logger:        &forge.LoggerJSON{Writer: os.Stdout},
 		indexTemplate: resources.Index,
 		hackerNewsAPI: hackernews.Client{},
 	}
@@ -34,7 +33,7 @@ func NewApp(config Config) *App {
 // App for my website
 type App struct {
 	listenAddress   string
-	logger          workbench.Logger
+	logger          forge.Logger
 	pageSize        int
 	refreshInterval time.Duration
 	indexTemplate   *template.Template
@@ -44,13 +43,13 @@ type App struct {
 
 // Handler to be used by hammer
 func (app *App) Handler() http.Handler {
-	router := &forge.Router{
+	router := &forge.HTTPRouter{
 		Routes: map[string]http.Handler{
 			"/": http.HandlerFunc(app.indexHandler),
 		},
 	}
 
-	static := &forge.Static{
+	static := &forge.HTTPStatic{
 		FileSystem:      http.FS(resources.Public),
 		NotFoundHandler: router,
 	}
@@ -59,7 +58,7 @@ func (app *App) Handler() http.Handler {
 }
 
 // Logger to be used by hammer
-func (app *App) Logger() workbench.Logger {
+func (app *App) Logger() forge.Logger {
 	return app.logger
 }
 

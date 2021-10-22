@@ -1,4 +1,4 @@
-.PHONY: help full full-go docker build build-go lint lint-go test test-go watch-go clean clean-full copy-config projectl git-change-check
+.PHONY: help full full-go docker build build-go lint lint-go test test-go watch-go clean clean-full copy-config docs-go projectl git-change-check
 
 SHELL=/bin/bash -o pipefail
 
@@ -59,6 +59,11 @@ clean-full:
 	git clean -Xdff
 
 copy-config: ## Copy missing config files into place
+
+docs-go: ## Serve the package using the godoc tool
+	@go install golang.org/x/tools/cmd/godoc@latest
+	@echo 'Serving docs at http://0.0.0.0:2222/pkg/github.com/fuzzingbits/quiet-hacker-news'
+	@godoc -http=0.0.0.0:2222
 
 projectl:
 	@go install github.com/aaronellington/projectl@latest

@@ -2,14 +2,13 @@ package main
 
 import (
 	"github.com/fuzzingbits/forge"
-	"github.com/fuzzingbits/forge/hammer"
 	"github.com/fuzzingbits/quiet-hacker-news/pkg/qhn"
 )
 
 func main() {
 	config := getConfig()
 	app := qhn.NewApp(config)
-	hammer.Run(app)
+	forge.Run(app)
 }
 
 func getConfig() qhn.Config {
