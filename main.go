@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/fuzzingbits/forge"
-	"github.com/fuzzingbits/quiet-hacker-news/pkg/qhn"
+	"github.com/aaronellington/quiet-hacker-news/pkg/forge"
+	"github.com/aaronellington/quiet-hacker-news/pkg/qhn"
 )
 
 func main() {

@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/fuzzingbits/quiet-hacker-news/pkg/hackernews"
+	"github.com/aaronellington/quiet-hacker-news/pkg/hackernews"
 )
 
 // UpdateCache updates the cache

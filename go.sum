@@ -1,4 +1,2 @@
-github.com/fuzzingbits/forge v0.1.0 h1:EsQhWEurG93dPz9q3ABsPsmIzvNVHYa2aG28YF2DOes=
-github.com/fuzzingbits/forge v0.1.0/go.mod h1:wU0BHT4tFS8w1bl+0jnS5b1WpuFPC+FubboPdyTfb9o=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=

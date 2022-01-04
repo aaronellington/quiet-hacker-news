@@ -17,7 +17,7 @@ full: lint test build
 full-go: lint-go test-go build-go
 
 docker:
-	docker build -t fuzzingbits/quiet-hacker-news:latest .
+	docker build -t aaronellington/quiet-hacker-news:latest .
 
 build: build-go ## Build the application
 
@@ -62,7 +62,7 @@ copy-config: ## Copy missing config files into place
 
 docs-go: ## Serve the package using the godoc tool
 	@go install golang.org/x/tools/cmd/godoc@latest
-	@echo 'Serving docs at http://0.0.0.0:2222/pkg/github.com/fuzzingbits/quiet-hacker-news'
+	@echo 'Serving docs at http://0.0.0.0:2222/pkg/github.com/aaronellington/quiet-hacker-news'
 	@godoc -http=0.0.0.0:2222
 
 projectl:

@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/fuzzingbits/forge"
+	"github.com/aaronellington/quiet-hacker-news/pkg/forge"
 )
 
 func (app *App) indexHandler(w http.ResponseWriter, r *http.Request) {

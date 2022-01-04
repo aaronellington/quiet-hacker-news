@@ -7,9 +7,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/fuzzingbits/forge"
-	"github.com/fuzzingbits/quiet-hacker-news/pkg/hackernews"
-	"github.com/fuzzingbits/quiet-hacker-news/resources"
+	"github.com/aaronellington/quiet-hacker-news/pkg/forge"
+	"github.com/aaronellington/quiet-hacker-news/pkg/hackernews"
+	"github.com/aaronellington/quiet-hacker-news/resources"
 )
 
 // NewApp builds a new App instance using the provided config

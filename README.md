@@ -2,9 +2,9 @@
 
 A quieter approach to Hacker News. Links and nothing else.
 
-[![License](https://img.shields.io/github/license/fuzzingbits/quiet-hacker-news)](https://github.com/fuzzingbits/quiet-hacker-news/blob/main/LICENSE)
-[![GitHub Actions](https://github.com/fuzzingbits/quiet-hacker-news/workflows/Go/badge.svg)](https://github.com/fuzzingbits/quiet-hacker-news/actions)
-[![Go Report Card](https://goreportcard.com/badge/github.com/fuzzingbits/quiet-hacker-news)](https://goreportcard.com/report/github.com/fuzzingbits/quiet-hacker-news)
+[![License](https://img.shields.io/github/license/aaronellington/quiet-hacker-news)](https://github.com/aaronellington/quiet-hacker-news/blob/main/LICENSE)
+[![GitHub Actions](https://github.com/aaronellington/quiet-hacker-news/workflows/Go/badge.svg)](https://github.com/aaronellington/quiet-hacker-news/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/aaronellington/quiet-hacker-news)](https://goreportcard.com/report/github.com/aaronellington/quiet-hacker-news)
 
 ![screenshot](/ops/screenshot.png)
 
@@ -22,4 +22,4 @@ A quieter approach to Hacker News. Links and nothing else.
     - Run for local development: `make dev`
     - See [Makefile](/Makefile) for additional targets
 - From Docker Image:
-    - `docker run -p 9090:9090 fuzzingbits/quiet-hacker-news`
+    - `docker run -p 9090:9090 aaronellington/quiet-hacker-news`
