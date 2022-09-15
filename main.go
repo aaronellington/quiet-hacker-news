@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/aaronellington/quiet-hacker-news/forge"
+	"github.com/aaronellington/quiet-hacker-news/internal/forge"
 	"github.com/aaronellington/quiet-hacker-news/pkg/qhn"
 )
 

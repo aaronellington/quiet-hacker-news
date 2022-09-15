@@ -1,6 +1,6 @@
 package qhn
 
-import "github.com/aaronellington/quiet-hacker-news/forge"
+import "github.com/aaronellington/quiet-hacker-news/internal/forge"
 
 // Config is foobar
 type Config struct {

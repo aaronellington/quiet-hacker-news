@@ -3,7 +3,7 @@ package qhn
 import (
 	"encoding/json"
 
-	"github.com/aaronellington/quiet-hacker-news/forge"
+	"github.com/aaronellington/quiet-hacker-news/internal/forge"
 	"github.com/aaronellington/quiet-hacker-news/pkg/hackernews"
 )
 

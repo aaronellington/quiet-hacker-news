@@ -6,7 +6,7 @@ import (
 	"io/fs"
 	"os"
 
-	"github.com/aaronellington/quiet-hacker-news/forge"
+	"github.com/aaronellington/quiet-hacker-news/internal/forge"
 )
 
 // Public is foobar

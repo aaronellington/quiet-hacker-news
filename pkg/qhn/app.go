@@ -5,13 +5,13 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/aaronellington/quiet-hacker-news/forge"
+	"github.com/aaronellington/quiet-hacker-news/internal/forge"
 	"github.com/aaronellington/quiet-hacker-news/pkg/hackernews"
 	"github.com/aaronellington/quiet-hacker-news/resources"
 )
 
-const refreshInterval = time.Minute * 5
-const pageSize = 25
+const refreshInterval = time.Hour * 1
+const pageSize = 30
 
 // App is foobar
 type App struct {

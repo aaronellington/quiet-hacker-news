@@ -7,11 +7,13 @@ import (
 	"io/fs"
 )
 
+// Resources is foobar
 type Resources struct {
 	EmbedFS embed.FS
 	LocalFS fs.FS
 }
 
+// MustOpenDirectory is foobar
 func (resources *Resources) MustOpenDirectory(dir string) fs.FS {
 	// { // Dev Env
 	// 	actualFilesOnDisk := os.DirFS("resources/" + dir)
@@ -29,6 +31,7 @@ func (resources *Resources) MustOpenDirectory(dir string) fs.FS {
 	return dest
 }
 
+// MustOpenFile is foobar
 func (resources *Resources) MustOpenFile(fileName string) fs.File {
 	// { // Dev Env
 	// 	actualFilesOnDisk := os.DirFS("resources/" + dir)
@@ -46,6 +49,7 @@ func (resources *Resources) MustOpenFile(fileName string) fs.File {
 	return dest
 }
 
+// MustOpenFileContents is foobar
 func (resources *Resources) MustOpenFileContents(fileName string) string {
 	file := resources.MustOpenFile(fileName)
 	fileBytes, err := io.ReadAll(file)
@@ -56,6 +60,7 @@ func (resources *Resources) MustOpenFileContents(fileName string) string {
 	return string(fileBytes)
 }
 
+// MustParseHTMLTemplate is foobar
 func (resources *Resources) MustParseHTMLTemplate(fileName string) *template.Template {
 	file := resources.MustOpenFile(fileName)
 	fileBytes, err := io.ReadAll(file)

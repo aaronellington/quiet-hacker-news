@@ -1,4 +1,4 @@
-.PHONY: full build build-go test test-go lint lint-go fix fix-go watch clean docker
+.PHONY: full build build-go test test-go lint lint-go fix fix-go watch-go clean docker
 
 SHELL=/bin/bash -o pipefail
 GO_PATH := $(shell go env GOPATH 2> /dev/null)
@@ -29,6 +29,7 @@ lint-go:
 	@go install golang.org/x/lint/golint@latest
 	@go install golang.org/x/tools/cmd/goimports@latest
 	go get -d ./...
+	go mod tidy
 	gofmt -s -w .
 	go vet ./...
 	golint -set_exit_status=1 ./...
@@ -42,8 +43,10 @@ fix-go:
 	gofmt -s -w .
 	goimports -w .
 
-## Watch the project
-watch:
+watch-go:
+	@go install github.com/codegangsta/gin@latest
+	clear
+	gin --all --immediate --path . --build . --bin var/gin --port 2222 run
 
 ## Clean the project
 clean:
