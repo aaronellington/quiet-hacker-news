@@ -1,0 +1,5 @@
+# Temporary Files
+/var/
+
+# Project Config and Secrets
+/.env.local

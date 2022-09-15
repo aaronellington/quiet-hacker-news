@@ -1,0 +1,4 @@
+{
+    "port": 2222,
+    "docker_tag": "aaronellington/quiet-hacker-news"
+}
