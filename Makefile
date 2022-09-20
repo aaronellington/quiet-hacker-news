@@ -1,32 +1,29 @@
-.PHONY: help full full-go docker build build-go lint lint-go test test-go watch-go clean clean-full copy-config projectl git-change-check
+.PHONY: full build build-go test test-go lint lint-go fix fix-go watch-go clean docker
 
 SHELL=/bin/bash -o pipefail
-
-.DEFAULT_GOAL := help
 GO_PATH := $(shell go env GOPATH 2> /dev/null)
-PATH := $(GO_PATH)/bin:$(PATH)
+PATH := /usr/local/bin:$(GO_PATH)/bin:$(PATH)
 
-help: ## Display general help about this command
-	@echo 'Makefile targets:'
-	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' Makefile \
-	| sed -n 's/^\(.*\): \(.*\)##\(.*\)/    \1 :: \3/p' \
-	| column -t -c 1  -s '::'
+full: clean lint test build
 
-full: lint test build
-
-full-go: lint-go test-go build-go
-
-docker:
-	docker build -t fuzzingbits/quiet-hacker-news:latest .
-
-build: build-go ## Build the application
+## Build the project
+build: build-go
 
 build-go:
-	@go generate
-	go build -ldflags='-s -w' -o $(CURDIR)/var/quiet-hacker-news .
-	@ln -sf $(CURDIR)/var/quiet-hacker-news $(GO_PATH)/bin/quiet-hacker-news
+	go generate
+	go build -ldflags='-s -w' -o var/build .
+	@go install .
 
-lint: lint-go ## Lint the application
+## Test the project
+test: test-go
+
+test-go:
+	@mkdir -p var/
+	@go test -race -cover -coverprofile  var/coverage.txt ./...
+	@go tool cover -func var/coverage.txt | awk '/^total/{print $$1 " " $$3}'
+
+## Lint the project
+lint: lint-go
 
 lint-go:
 	@go install golang.org/x/lint/golint@latest
@@ -38,31 +35,23 @@ lint-go:
 	golint -set_exit_status=1 ./...
 	goimports -w .
 
-test: test-go ## Test the application
+## Fix the project
+fix: fix-go
 
-test-go:
-	@mkdir -p var/
-	@go test -race -cover -coverprofile  var/coverage.txt ./...
-	@go tool cover -func var/coverage.txt | awk '/^total/{print $$1 " " $$3}'
+fix-go:
+	go mod tidy
+	gofmt -s -w .
+	goimports -w .
 
 watch-go:
 	@go install github.com/codegangsta/gin@latest
 	clear
-	gin --all --immediate --path . --build . --bin var/gin --port 8000 run
+	gin --all --immediate --path . --build . --bin var/gin --port 2222 run
 
-clean: ## Remove files listed in .gitignore (possibly with some exceptions)
-	@git init 2> /dev/null
+## Clean the project
+clean:
 	git clean -Xdff
 
-clean-full:
-	@git init 2> /dev/null
-	git clean -Xdff
-
-copy-config: ## Copy missing config files into place
-
-projectl:
-	@go install github.com/aaronellington/projectl@latest
-	$(shell go env GOPATH)/bin/projectl
-
-git-change-check:
-	@git diff --exit-code --quiet || (echo 'There should not be any changes at this point' && git status && exit 1;)
+## Build the docker image
+docker: clean
+	docker build -t aaronellington/quiet-hacker-news .

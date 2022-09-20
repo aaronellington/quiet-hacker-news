@@ -4,30 +4,26 @@ import (
 	"embed"
 	"html/template"
 	"io/fs"
+	"os"
+
+	"github.com/aaronellington/quiet-hacker-news/internal/forge"
 )
+
+// Public is foobar
+var Public fs.FS
 
 // Index template
 var Index *template.Template
 
-// Public filesystem for philote
-var Public fs.FS
-
 //go:embed *
-var resources embed.FS
-
-//go:embed index.go.html
-var themeContent string
+var everything embed.FS
 
 func init() {
-	var err error
-
-	Public, err = fs.Sub(resources, "public")
-	if err != nil {
-		panic(err)
+	resources := forge.Resources{
+		EmbedFS: everything,
+		LocalFS: os.DirFS("resources"),
 	}
 
-	Index, err = template.New("theme").Parse(themeContent)
-	if err != nil {
-		panic(err)
-	}
+	Public = resources.MustOpenDirectory("public")
+	Index = resources.MustParseHTMLTemplate("index.go.html")
 }

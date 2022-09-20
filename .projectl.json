@@ -1,5 +1,0 @@
-{
-    "go_http": true,
-    "docker_name": "fuzzingbits/quiet-hacker-news",
-    "docker_port": 8000
-}

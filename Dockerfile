@@ -1,13 +1,12 @@
-FROM golang:1.17-buster as goBuilder
-WORKDIR /build-staging
+FROM golang:1.19-buster as goBuilder
+WORKDIR /staging
 COPY . .
-RUN make clean-full
-RUN make lint-go test-go build-go
+RUN make full
 
 FROM debian:buster
+WORKDIR /app
 RUN apt-get update
 RUN apt-get install -y ca-certificates
-WORKDIR /app
-COPY --from=goBuilder /build-staging/var/quiet-hacker-news ./quiet-hacker-news
-CMD ["./quiet-hacker-news"]
-EXPOSE 8000
+COPY --from=goBuilder /staging/var/build ./build
+CMD ["./build"]
+EXPOSE 2222

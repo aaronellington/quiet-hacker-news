@@ -1,11 +1,30 @@
 package qhn
 
-import "time"
+import (
+	"github.com/aaronellington/quiet-hacker-news/internal/forge"
+)
 
-// Config is the structure of the configuration options
+// Config is foobar
 type Config struct {
-	Host                 string
-	Port                 int           `env:"PORT"`
-	PageSize             int           `env:"QHN_PAGE_SIZE"`
-	RefreshIntervalHours time.Duration `env:"QHN_REFRESH_INTERVAL_HOURS"`
+	Host                   string `env:"HOST"`
+	Port                   int    `env:"PORT"`
+	RefreshIntervalMinutes int    `env:"QHN_REFRESH_INTERVAL_MINUTES"`
+	PageSize               int    `env:"QHN_PAGE_SIZE"`
+}
+
+func buildConfig(environment forge.Environment) (*Config, error) {
+	// Defaults
+	config := &Config{
+		Host:                   "0.0.0.0",
+		Port:                   2222,
+		RefreshIntervalMinutes: 60,
+		PageSize:               30,
+	}
+
+	// Read in config variables from the environment
+	if err := environment.Decode(config); err != nil {
+		return nil, err
+	}
+
+	return config, nil
 }

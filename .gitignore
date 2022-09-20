@@ -1,15 +1,5 @@
-# System Files
-/.vscode/
-/.idea/
-.DS_Store
-
 # Temporary Files
 /var/
 
-# Environment Files
+# Project Config and Secrets
 /.env.local
-/.env.*.local
-
-# Go Files
-__debug_bin
-debug.test

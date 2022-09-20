@@ -2,68 +2,49 @@ package qhn
 
 import (
 	"fmt"
-	"html/template"
 	"net/http"
-	"os"
 	"time"
 
-	"github.com/fuzzingbits/forge"
-	"github.com/fuzzingbits/forge/workbench"
-	"github.com/fuzzingbits/quiet-hacker-news/pkg/hackernews"
-	"github.com/fuzzingbits/quiet-hacker-news/resources"
+	"github.com/aaronellington/quiet-hacker-news/internal/forge"
+	"github.com/aaronellington/quiet-hacker-news/pkg/hackernews"
+	"github.com/aaronellington/quiet-hacker-news/resources"
 )
 
-// NewApp builds a new App instance using the provided config
-func NewApp(config Config) *App {
-	app := &App{
-		// Config
-		listenAddress:   fmt.Sprintf("%s:%d", config.Host, config.Port),
-		pageSize:        config.PageSize,
-		refreshInterval: time.Hour * config.RefreshIntervalHours,
-		// Internal
-		logger:        &workbench.LoggerJSON{Writer: os.Stdout},
-		indexTemplate: resources.Index,
-		hackerNewsAPI: hackernews.Client{},
-	}
-
-	go app.startCacheUpdateLoop()
-
-	return app
-}
-
-// App for my website
+// App is foobar
 type App struct {
-	listenAddress   string
-	logger          workbench.Logger
-	pageSize        int
-	refreshInterval time.Duration
-	indexTemplate   *template.Template
+	runtime         *forge.Runtime
+	logger          forge.Logger
+	config          *Config
+	hackernewsItems []hackernews.Item
 	hackerNewsAPI   hackernews.Client
-	itemCache       []hackernews.Item
 }
 
-// Handler to be used by hammer
-func (app *App) Handler() http.Handler {
-	router := &forge.Router{
-		Routes: map[string]http.Handler{
-			"/": http.HandlerFunc(app.indexHandler),
-		},
-	}
-
-	static := &forge.Static{
-		FileSystem:      http.FS(resources.Public),
-		NotFoundHandler: router,
-	}
-
-	return static
+// ListenAddress is foobar
+func (app *App) ListenAddress() string {
+	return fmt.Sprintf("%s:%d", app.config.Host, app.config.Port)
 }
 
-// Logger to be used by hammer
-func (app *App) Logger() workbench.Logger {
+// Logger is foobar
+func (app *App) Logger() forge.Logger {
 	return app.logger
 }
 
-// ListenAddress to be used by hammer
-func (app *App) ListenAddress() string {
-	return app.listenAddress
+// Background is foobar
+func (app *App) Background() {
+	app.updateCacheTick()
+	for range time.NewTicker(time.Minute * time.Duration(app.config.RefreshIntervalMinutes)).C {
+		app.updateCacheTick()
+	}
+}
+
+// Handler is foobar
+func (app *App) Handler() http.Handler {
+	return &forge.Router{
+		Routes: map[string]http.Handler{
+			"/": app.handlerRoot(),
+		},
+		NotFoundHandler: &forge.Static{
+			FileSystem: http.FS(resources.Public),
+		},
+	}
 }
