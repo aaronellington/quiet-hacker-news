@@ -1,7 +1,6 @@
 package forge
 
 import (
-	"embed"
 	"html/template"
 	"io"
 	"io/fs"
@@ -9,42 +8,45 @@ import (
 
 // Resources is foobar
 type Resources struct {
-	EmbedFS embed.FS
-	LocalFS fs.FS
+	FileSystems []fs.FS
 }
 
 // MustOpenDirectory is foobar
 func (resources *Resources) MustOpenDirectory(dir string) fs.FS {
-	{ // Prefer local
-		localDir, err := fs.Sub(resources.LocalFS, dir)
+	for i, fileSystem := range resources.FileSystems {
+		_, openTestErr := fileSystem.Open(dir)
+		if openTestErr != nil {
+			continue
+		}
+
+		directory, err := fs.Sub(fileSystem, dir)
 		if err == nil {
-			return localDir
+			return directory
+		}
+
+		if i == (len(resources.FileSystems) - 1) {
+			panic(err)
 		}
 	}
 
-	embedDir, err := fs.Sub(resources.EmbedFS, dir)
-	if err != nil {
-		panic(err)
-	}
-
-	return embedDir
+	panic("no fileSystems")
 }
 
 // MustOpenFile is foobar
 func (resources *Resources) MustOpenFile(fileName string) fs.File {
-	{ // Prefer local
-		localFile, err := resources.LocalFS.Open(fileName)
+	for i, fileSystem := range resources.FileSystems {
+		file, err := fileSystem.Open(fileName)
 		if err == nil {
-			return localFile
+			return file
+		}
+
+		// If the last filesystem, panic
+		if i == (len(resources.FileSystems) - 1) {
+			panic(err)
 		}
 	}
 
-	embedFile, err := resources.EmbedFS.Open(fileName)
-	if err != nil {
-		panic(err)
-	}
-
-	return embedFile
+	panic("no fileSystems")
 }
 
 // MustOpenFileContents is foobar

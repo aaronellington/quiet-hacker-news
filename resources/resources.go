@@ -20,8 +20,10 @@ var everything embed.FS
 
 func init() {
 	resources := forge.Resources{
-		EmbedFS: everything,
-		LocalFS: os.DirFS("resources"),
+		FileSystems: []fs.FS{
+			os.DirFS("resources"),
+			everything,
+		},
 	}
 
 	Public = resources.MustOpenDirectory("public")

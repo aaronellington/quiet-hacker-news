@@ -1,16 +1,15 @@
 package forge
 
 import (
+	"fmt"
 	"reflect"
-	"testing"
 )
 
 // Assert is foobar
-func Assert(t *testing.T, expected interface{}, actual interface{}) bool {
+func Assert(expected interface{}, actual interface{}) error {
 	if !reflect.DeepEqual(expected, actual) {
-		t.Errorf("Got %v, Expected: %v", actual, expected)
-		return false
+		return fmt.Errorf("not equal... Got: %v, Expected: %v", actual, expected)
 	}
 
-	return true
+	return nil
 }
