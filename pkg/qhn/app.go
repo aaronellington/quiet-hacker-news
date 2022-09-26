@@ -39,12 +39,15 @@ func (app *App) Background() {
 
 // Handler is foobar
 func (app *App) Handler() http.Handler {
-	return &forge.Router{
-		Routes: map[string]http.Handler{
-			"/": app.handlerRoot(),
-		},
-		NotFoundHandler: &forge.Static{
-			FileSystem: http.FS(resources.Public),
+	return &forge.HTTPLogger{
+		Logger: app.Logger(),
+		Handler: &forge.HTTPRouter{
+			Routes: map[string]http.Handler{
+				"/": app.handlerRoot(),
+			},
+			NotFoundHandler: &forge.HTTPStatic{
+				FileSystem: http.FS(resources.Public),
+			},
 		},
 	}
 }

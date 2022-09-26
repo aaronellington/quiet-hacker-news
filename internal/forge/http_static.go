@@ -8,23 +8,23 @@ import (
 	"strings"
 )
 
-// Static is foobar
-type Static struct {
+// HTTPStatic is foobar
+type HTTPStatic struct {
 	FileSystem      http.FileSystem
 	NotFoundHandler http.Handler
 }
 
 // ServeHTTP is foobar
-func (static *Static) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (httpStatic *HTTPStatic) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	requestedFileName := r.URL.Path
 	isRequestingDirectory := strings.HasSuffix(requestedFileName, "/")
 	if isRequestingDirectory {
 		requestedFileName += "index.html"
 	}
 
-	file, err := static.FileSystem.Open(requestedFileName)
+	file, err := httpStatic.FileSystem.Open(requestedFileName)
 	if err != nil {
-		correctNotFoundHandler(static.NotFoundHandler).ServeHTTP(w, r)
+		correctNotFoundHandler(httpStatic.NotFoundHandler).ServeHTTP(w, r)
 		return
 	}
 	defer file.Close()

@@ -46,7 +46,7 @@ fix-go:
 watch-go:
 	@go install github.com/codegangsta/gin@latest
 	clear
-	gin --all --immediate --path . --build . --bin var/gin --port 2222 run
+	gin --all --immediate --path . --build . --bin var/gin --excludeDir var --port 2222 run
 
 ## Clean the project
 clean:
