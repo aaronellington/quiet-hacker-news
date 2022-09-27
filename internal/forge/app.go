@@ -1,6 +1,7 @@
 package forge
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 )
@@ -19,12 +20,12 @@ type WebApp interface {
 	// What address the webserver should listen on
 	ListenAddress() string
 	// Tasks to run in the background (a Go routine)
-	Background()
+	Background(ctx context.Context)
 }
 
 // Run is foobar
-func Run(app WebApp) error {
-	go app.Background()
+func Run(ctx context.Context, app WebApp) error {
+	go app.Background(ctx)
 
 	httpServer := &http.Server{
 		Addr:     app.ListenAddress(),

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+
 	"github.com/aaronellington/quiet-hacker-news/internal/forge"
 	"github.com/aaronellington/quiet-hacker-news/pkg/qhn"
 )
@@ -17,5 +19,5 @@ func main() {
 		panic(err)
 	}
 
-	forge.Run(app)
+	forge.Run(context.Background(), app)
 }

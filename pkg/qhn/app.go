@@ -1,6 +1,7 @@
 package qhn
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"time"
@@ -30,7 +31,7 @@ func (app *App) Logger() forge.Logger {
 }
 
 // Background is foobar
-func (app *App) Background() {
+func (app *App) Background(ctx context.Context) {
 	app.updateCacheTick()
 	for range time.NewTicker(time.Minute * time.Duration(app.config.RefreshIntervalMinutes)).C {
 		app.updateCacheTick()
