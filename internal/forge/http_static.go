@@ -28,10 +28,9 @@ func (httpStatic *HTTPStatic) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 	defer file.Close()
-
 	fileTypeHeader := mime.TypeByExtension(filepath.Ext(requestedFileName))
 
-	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", fileTypeHeader)
+	w.WriteHeader(http.StatusOK)
 	io.Copy(w, file)
 }
