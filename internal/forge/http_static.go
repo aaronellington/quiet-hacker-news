@@ -12,6 +12,7 @@ import (
 type HTTPStatic struct {
 	FileSystem      http.FileSystem
 	NotFoundHandler http.Handler
+	CacheControl    string
 }
 
 // ServeHTTP is foobar
@@ -31,6 +32,9 @@ func (httpStatic *HTTPStatic) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	fileTypeHeader := mime.TypeByExtension(filepath.Ext(requestedFileName))
 
 	w.Header().Set("Content-Type", fileTypeHeader)
+	if httpStatic.CacheControl != "" {
+		w.Header().Set("Cache-Control", httpStatic.CacheControl)
+	}
 	w.WriteHeader(http.StatusOK)
 	io.Copy(w, file)
 }
