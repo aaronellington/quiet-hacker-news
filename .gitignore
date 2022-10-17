@@ -3,3 +3,4 @@
 
 # Project Config and Secrets
 /.env.local
+/.env.*.local

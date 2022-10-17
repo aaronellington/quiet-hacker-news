@@ -1,7 +1,7 @@
 FROM golang:1.19-buster as goBuilder
 WORKDIR /staging
 COPY . .
-RUN make full
+RUN make build-go
 
 FROM debian:buster
 WORKDIR /app
