@@ -2,7 +2,6 @@
 
 SHELL=/bin/bash -o pipefail
 $(shell git config core.hooksPath ops/git-hooks)
-SHELL=/bin/bash -o pipefail
 GO_PATH := $(shell go env GOPATH 2> /dev/null)
 PATH := /usr/local/bin:$(GO_PATH)/bin:$(PATH)
 
