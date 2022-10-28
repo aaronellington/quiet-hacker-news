@@ -8,7 +8,6 @@ import (
 	"os/exec"
 )
 
-// NewRuntime is foobar
 func NewRuntime() *Runtime {
 	return &Runtime{
 		Environment: NewEnvironment(),
@@ -19,7 +18,6 @@ func NewRuntime() *Runtime {
 	}
 }
 
-// Runtime is foobar
 type Runtime struct {
 	Environment Environment
 	Stdout      io.Writer
@@ -28,7 +26,6 @@ type Runtime struct {
 	FS          fs.FS
 }
 
-// Execute is foobar
 func (runtime Runtime) Execute(name string, args ...string) error {
 	cmd := exec.Command(name, args...)
 	cmd.Stderr = runtime.Stderr
@@ -38,7 +35,6 @@ func (runtime Runtime) Execute(name string, args ...string) error {
 	return cmd.Run()
 }
 
-// ReadInDefaultEnvironmentFiles is foobar
 func (runtime Runtime) ReadInDefaultEnvironmentFiles() error {
 	defaultFiles := []string{
 		// Values already set in the Environment will not be changed
@@ -55,7 +51,6 @@ func (runtime Runtime) ReadInDefaultEnvironmentFiles() error {
 	return nil
 }
 
-// ReadInEnvironmentFile is foobar
 func (runtime Runtime) ReadInEnvironmentFile(fileName string) error {
 	file, err := runtime.FS.Open(fileName)
 	if err != nil {

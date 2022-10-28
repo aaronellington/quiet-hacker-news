@@ -9,7 +9,6 @@ import (
 	"github.com/aaronellington/quiet-hacker-news/internal/forge"
 )
 
-// Public is foobar
 var Public fs.FS
 
 // Index template

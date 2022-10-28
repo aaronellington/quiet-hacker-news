@@ -11,7 +11,6 @@ import (
 	"github.com/aaronellington/quiet-hacker-news/resources"
 )
 
-// App is foobar
 type App struct {
 	runtime         *forge.Runtime
 	logger          forge.Logger
@@ -20,17 +19,14 @@ type App struct {
 	hackerNewsAPI   hackernews.Client
 }
 
-// ListenAddress is foobar
 func (app *App) ListenAddress() string {
 	return fmt.Sprintf("%s:%d", app.config.Host, app.config.Port)
 }
 
-// Logger is foobar
 func (app *App) Logger() forge.Logger {
 	return app.logger
 }
 
-// Background is foobar
 func (app *App) Background(ctx context.Context) {
 	app.updateCacheTick()
 	for range time.NewTicker(time.Minute * time.Duration(app.config.RefreshIntervalMinutes)).C {
@@ -38,7 +34,6 @@ func (app *App) Background(ctx context.Context) {
 	}
 }
 
-// Handler is foobar
 func (app *App) Handler() http.Handler {
 	return &forge.HTTPLogger{
 		Logger: app.Logger(),

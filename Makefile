@@ -27,13 +27,11 @@ test-go:
 lint: lint-go
 
 lint-go:
-	@go install golang.org/x/lint/golint@latest
 	@go install golang.org/x/tools/cmd/goimports@latest
 	go get -d ./...
 	go mod tidy
 	gofmt -s -w .
 	go vet ./...
-	golint -set_exit_status=1 ./...
 	goimports -w .
 
 ## Fix the project
@@ -51,11 +49,11 @@ watch:
 watch-go:
 	@go install github.com/codegangsta/gin@latest
 	clear
-	gin --all --immediate --path . --build . --bin var/gin --excludeDir var --port 2222 run
+	gin --immediate --path . --build . --bin var/gin --port 2222 run
 
 ## Clean the project
 clean:
-	git clean -Xdff
+	git clean -Xdff --exclude="!.env*local"
 
 ## Build the docker image
 docker: clean

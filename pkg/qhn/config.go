@@ -4,7 +4,6 @@ import (
 	"github.com/aaronellington/quiet-hacker-news/internal/forge"
 )
 
-// Config is foobar
 type Config struct {
 	Host                   string `env:"HOST"`
 	Port                   int    `env:"PORT"`

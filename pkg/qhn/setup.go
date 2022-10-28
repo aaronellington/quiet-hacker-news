@@ -7,7 +7,6 @@ import (
 	"github.com/aaronellington/quiet-hacker-news/pkg/hackernews"
 )
 
-// Setup is foobar
 func Setup(runtime *forge.Runtime) (*App, error) {
 	app := &App{
 		runtime: runtime,

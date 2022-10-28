@@ -6,13 +6,11 @@ import (
 	"net/http"
 )
 
-// App is foobar
 type App interface {
 	// The Logger to be used
 	Logger() Logger
 }
 
-// WebApp is foobar
 type WebApp interface {
 	App
 	// How it responds to web requests
@@ -23,7 +21,6 @@ type WebApp interface {
 	Background(ctx context.Context)
 }
 
-// Run is foobar
 func Run(ctx context.Context, app WebApp) error {
 	go app.Background(ctx)
 

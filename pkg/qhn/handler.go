@@ -9,7 +9,6 @@ import (
 	"github.com/aaronellington/quiet-hacker-news/resources"
 )
 
-// APIResponse is foobar
 type APIResponse struct {
 	Message string `json:"message"`
 }

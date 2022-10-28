@@ -8,14 +8,12 @@ import (
 	"strings"
 )
 
-// HTTPStatic is foobar
 type HTTPStatic struct {
 	FileSystem      http.FileSystem
 	NotFoundHandler http.Handler
 	CacheControl    string
 }
 
-// ServeHTTP is foobar
 func (httpStatic *HTTPStatic) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	requestedFileName := r.URL.Path
 	isRequestingDirectory := strings.HasSuffix(requestedFileName, "/")

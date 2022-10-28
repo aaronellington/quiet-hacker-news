@@ -14,7 +14,6 @@ type httpLoggerRequestID string
 // httpLoggerRequestIDKey is the "string" key is used for storing the request id
 const httpLoggerRequestIDKey httpLoggerRequestID = "forge-request-id"
 
-// HTTPLogger is foobar
 type HTTPLogger struct {
 	Logger  Logger
 	Handler http.Handler

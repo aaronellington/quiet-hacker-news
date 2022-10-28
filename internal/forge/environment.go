@@ -19,7 +19,6 @@ var (
 	ErrUnexportedField = errors.New("field must be exported")
 )
 
-// NewEnvironment is foobar
 func NewEnvironment() Environment {
 	environment := Environment{}
 
@@ -31,10 +30,8 @@ func NewEnvironment() Environment {
 	return environment
 }
 
-// Environment is foobar
 type Environment map[string]string
 
-// ImportEnvFileContents is foobar
 func (environment Environment) ImportEnvFileContents(fileContents string) error {
 	lines := strings.Split(fileContents, "\n")
 	for _, line := range lines {
@@ -59,7 +56,6 @@ func (environment Environment) ImportEnvFileContents(fileContents string) error 
 	return nil
 }
 
-// Decode is foobar
 func (environment Environment) Decode(target interface{}) error {
 	rv := reflect.ValueOf(target)
 
