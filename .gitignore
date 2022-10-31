@@ -2,5 +2,4 @@
 /var/
 
 # Project Config and Secrets
-/.env.local
-/.env.*.local
+/.env*local

@@ -19,9 +19,11 @@ build-go:
 test: test-go
 
 test-go:
-	@mkdir -p var/
-	@go test -race -cover -coverprofile  var/coverage.txt ./...
-	@go tool cover -func var/coverage.txt | awk '/^total/{print $$1 " " $$3}'
+	@mkdir -p var/coverage/go/
+	@go install github.com/boumenot/gocover-cobertura@latest
+	go test -race -cover -coverprofile var/coverage/go/profile.txt ./...
+	@go tool cover -func var/coverage/go/profile.txt | awk '/^total/{print $$1 " " $$3}'
+	@gocover-cobertura < var/coverage/go/profile.txt > var/coverage/go/cobertura-coverage.xml
 
 ## Lint the project
 lint: lint-go
@@ -47,9 +49,9 @@ watch:
 	make -j1 watch-go
 
 watch-go:
-	@go install github.com/codegangsta/gin@latest
+	@go install github.com/mitranim/gow@latest
 	clear
-	gin --immediate --path . --build . --bin var/gin --port 2222 run
+	gow run .
 
 ## Clean the project
 clean:
