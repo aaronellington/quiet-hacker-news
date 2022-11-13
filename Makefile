@@ -1,4 +1,4 @@
-.PHONY: full build build-go test test-go lint lint-go fix fix-go watch watch-go clean docker
+.PHONY: full build build-go test test-go lint lint-go fix fix-go watch watch-go clean docker docker-publish
 
 SHELL=/bin/bash -o pipefail
 $(shell git config core.hooksPath ops/git-hooks)
@@ -61,3 +61,7 @@ clean:
 ## Build the docker image
 docker: clean
 	docker build -t aaronellington/quiet-hacker-news .
+
+## Publish the docker image
+docker-publish: clean docker
+	docker push aaronellington/quiet-hacker-news
