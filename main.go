@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
-	"github.com/aaronellington/quiet-hacker-news/internal/forge"
 	"github.com/aaronellington/quiet-hacker-news/pkg/qhn"
+	"github.com/kyberbits/forge"
 )
 
 func main() {

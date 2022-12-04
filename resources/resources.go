@@ -6,7 +6,7 @@ import (
 	"io/fs"
 	"os"
 
-	"github.com/aaronellington/quiet-hacker-news/internal/forge"
+	"github.com/kyberbits/forge"
 )
 
 var Public fs.FS

@@ -1,18 +1,14 @@
 package qhn
 
 import (
-	"encoding/json"
-
-	"github.com/aaronellington/quiet-hacker-news/internal/forge"
 	"github.com/aaronellington/quiet-hacker-news/pkg/hackernews"
+	"github.com/kyberbits/forge"
 )
 
 func Setup(runtime *forge.Runtime) (*App, error) {
 	app := &App{
-		runtime: runtime,
-		logger: &forge.LoggerJSON{
-			Encoder: json.NewEncoder(runtime.Stderr),
-		},
+		runtime:       runtime,
+		logger:        forge.NewLogger("app", runtime.Stdout, nil),
 		hackerNewsAPI: hackernews.Client{},
 	}
 

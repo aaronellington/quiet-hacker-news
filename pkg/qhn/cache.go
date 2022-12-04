@@ -1,15 +1,16 @@
 package qhn
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/aaronellington/quiet-hacker-news/pkg/hackernews"
 )
 
-func (app *App) updateCacheTick() {
-	app.logger.Info("Updating the Cache", nil)
+func (app *App) updateCacheTick(ctx context.Context) {
+	app.logger.Info(ctx, "Updating the Cache", nil)
 	if err := app.updateCache(); err != nil {
-		app.logger.Error("Error Updating the Cache", map[string]interface{}{
+		app.logger.Error(ctx, "Error Updating the Cache", map[string]interface{}{
 			"error": err.Error(),
 		})
 	}
