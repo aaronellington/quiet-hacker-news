@@ -1,4 +1,4 @@
-.PHONY: full build build-go test test-go lint lint-go fix fix-go watch watch-go clean docker docker-publish
+.PHONY: full build build-go test test-go lint lint-go fix fix-go watch watch-go docs-go clean docker docker-publish
 
 SHELL=/bin/bash -o pipefail
 $(shell git config core.hooksPath ops/git-hooks)
@@ -52,7 +52,13 @@ watch:
 watch-go:
 	@go install github.com/mitranim/gow@latest
 	clear
-	gow run .
+	gow run . | jq
+
+## Run the godoc server
+docs-go:
+	go install golang.org/x/tools/cmd/godoc@latest
+	@echo "listening on http://127.0.0.1:6060/pkg/github.com/aaronellington/quiet-hacker-news"
+	godoc -http=127.0.0.1:6060
 
 ## Clean the project
 clean:
