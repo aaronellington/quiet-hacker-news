@@ -1,4 +1,4 @@
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/kyberbits/forge v0.0.14 h1:zPHIUWzdEZ+1MZnTIbFw8VyFKAHxMHanWjteTV15oOA=
-github.com/kyberbits/forge v0.0.14/go.mod h1:hV7IwthvrEiEkQAbcSWHRwgMWnjRoPOvP0vR3Ms6uss=
+github.com/kyberbits/forge v0.0.17 h1:ZIt391LmTPYe1UVxVdzaMa1f6MnByuGvMhfrFt2MRm0=
+github.com/kyberbits/forge v0.0.17/go.mod h1:hV7IwthvrEiEkQAbcSWHRwgMWnjRoPOvP0vR3Ms6uss=

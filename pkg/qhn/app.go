@@ -8,7 +8,7 @@ import (
 
 	"github.com/aaronellington/quiet-hacker-news/pkg/hackernews"
 	"github.com/aaronellington/quiet-hacker-news/resources"
-	"github.com/kyberbits/forge"
+	"github.com/kyberbits/forge/forge"
 )
 
 type App struct {
@@ -28,7 +28,7 @@ func (app *App) Logger() *forge.Logger {
 }
 
 func (app *App) Background(ctx context.Context) {
-	forge.KeepRunning(
+	app.runtime.KeepRunning(
 		ctx,
 		app,
 		func(ctx context.Context) {

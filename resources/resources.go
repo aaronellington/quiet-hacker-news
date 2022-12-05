@@ -6,7 +6,7 @@ import (
 	"io/fs"
 	"os"
 
-	"github.com/kyberbits/forge"
+	"github.com/kyberbits/forge/forge"
 )
 
 var Public fs.FS
@@ -18,12 +18,10 @@ var Index *template.Template
 var everything embed.FS
 
 func init() {
-	resources := forge.Resources{
-		FileSystems: []fs.FS{
-			os.DirFS("resources"),
-			everything,
-		},
-	}
+	resources := forge.NewResources([]fs.FS{
+		os.DirFS("resources"),
+		everything,
+	})
 
 	Public = resources.MustOpenDirectory("public")
 	Index = resources.MustParseHTMLTemplate("index.go.html")

@@ -1,6 +1,6 @@
 package qhn
 
-import "github.com/kyberbits/forge"
+import "github.com/kyberbits/forge/forge"
 
 type Config struct {
 	Host                   string `env:"HOST"`

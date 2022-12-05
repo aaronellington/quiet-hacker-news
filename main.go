@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/aaronellington/quiet-hacker-news/pkg/qhn"
-	"github.com/kyberbits/forge"
+	"github.com/kyberbits/forge/forge"
 )
 
 func main() {
@@ -19,5 +19,5 @@ func main() {
 		panic(err)
 	}
 
-	forge.Run(context.Background(), app)
+	runtime.Serve(context.Background(), app)
 }

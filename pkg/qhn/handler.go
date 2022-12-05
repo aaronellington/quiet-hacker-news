@@ -1,12 +1,10 @@
 package qhn
 
 import (
-	"bytes"
-	"io"
 	"net/http"
 
 	"github.com/aaronellington/quiet-hacker-news/resources"
-	"github.com/kyberbits/forge"
+	"github.com/kyberbits/forge/forge"
 )
 
 type APIResponse struct {
@@ -15,18 +13,7 @@ type APIResponse struct {
 
 func (app *App) handlerRoot() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		bodyBuffer := bytes.NewBuffer([]byte{})
-		if err := resources.Index.Execute(bodyBuffer, app.hackernewsItems); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-
-		responseBytes, err := io.ReadAll(bodyBuffer)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-
-		forge.RespondHTML(w, http.StatusOK, string(responseBytes))
+		handlerContext := forge.NewHandlerContext(w, r)
+		handlerContext.ExecuteTemplate(resources.Index, app.hackernewsItems)
 	})
 }

@@ -2,7 +2,7 @@ package qhn
 
 import (
 	"github.com/aaronellington/quiet-hacker-news/pkg/hackernews"
-	"github.com/kyberbits/forge"
+	"github.com/kyberbits/forge/forge"
 )
 
 func Setup(runtime *forge.Runtime) (*App, error) {
