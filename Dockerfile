@@ -1,4 +1,4 @@
-FROM golang:1.19-buster as goBuilder
+FROM golang:1.20-buster as goBuilder
 WORKDIR /staging
 COPY . .
 RUN make build-go
