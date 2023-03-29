@@ -9,20 +9,22 @@ import (
 	"github.com/kyberbits/forge/forge"
 )
 
-var Public fs.FS
-
-// Index template
-var Index *template.Template
-
 //go:embed *
 var everything embed.FS
 
-func init() {
+type Resources struct {
+	Public fs.FS
+	Index  *template.Template
+}
+
+func NewResources() Resources {
 	resources := forge.NewResources([]fs.FS{
 		os.DirFS("resources"),
 		everything,
 	})
 
-	Public = resources.MustOpenDirectory("public")
-	Index = resources.MustParseHTMLTemplate("index.go.html")
+	return Resources{
+		Public: resources.MustOpenDirectory("public"),
+		Index:  resources.MustParseHTMLTemplate("index.go.html"),
+	}
 }

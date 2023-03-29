@@ -17,6 +17,7 @@ type App struct {
 	config          *Config
 	hackernewsItems []hackernews.Item
 	hackerNewsAPI   hackernews.Client
+	resources       resources.Resources
 }
 
 func (app *App) ListenAddress() string {
@@ -46,7 +47,7 @@ func (app *App) Handler() http.Handler {
 				"/": app.handlerRoot(),
 			},
 			NotFoundHandler: &forge.HTTPStatic{
-				FileSystem: http.FS(resources.Public),
+				FileSystem: http.FS(app.resources.Public),
 			},
 		},
 	}

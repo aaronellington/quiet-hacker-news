@@ -19,5 +19,5 @@ func main() {
 		panic(err)
 	}
 
-	runtime.Serve(context.Background(), app)
+	_ = runtime.Serve(context.Background(), app)
 }

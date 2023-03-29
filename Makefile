@@ -30,12 +30,10 @@ test-go:
 lint: lint-go
 
 lint-go:
-	@go install golang.org/x/tools/cmd/goimports@latest
 	go get -d ./...
 	go mod tidy
-	gofmt -s -w .
-	go vet ./...
-	goimports -w .
+	[ -f var/golangci-lint ] || curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b var/ v1.52.2
+	./var/golangci-lint run ./...
 
 ## Fix the project
 fix: fix-go

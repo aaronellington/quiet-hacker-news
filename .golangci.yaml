@@ -1,0 +1,33 @@
+linters:
+  enable-all: true
+  disable:
+    # deprecated
+    - deadcode
+    - exhaustivestruct
+    - golint
+    - ifshort
+    - interfacer
+    - maligned
+    - nosnakecase
+    - scopelint
+    - structcheck
+    - varcheck
+    # Don't care for
+    - cyclop
+    - errorlint
+    - exhaustive
+    - exhaustruct
+    - funlen
+    - gocognit
+    - godox
+    - gomnd
+    - ireturn
+    - lll
+    - maintidx
+    - nestif
+    - paralleltest
+    - tagliatelle
+    - testpackage
+    - thelper
+    - varnamelen
+    - wrapcheck
