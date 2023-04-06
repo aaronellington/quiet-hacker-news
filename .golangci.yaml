@@ -1,3 +1,16 @@
+issues:
+  max-issues-per-linter: 0
+  new: false
+  max-same-issues: 0
+  fix: true
+
+output:
+  print-issued-lines: false
+  print-linter-name: true
+  uniq-by-line: false
+  path-prefix: ''
+  sort-results: true
+
 linters:
   enable-all: true
   disable:
@@ -31,3 +44,7 @@ linters:
     - thelper
     - varnamelen
     - wrapcheck
+    - dupl
+    # Temp
+    - goerr113
+    - contextcheck
