@@ -26,17 +26,13 @@ linters:
     - structcheck
     - varcheck
     # Don't care for
-    - cyclop
-    - errorlint
+    - dupl
     - exhaustive
     - exhaustruct
     - funlen
-    - gocognit
     - godox
-    - gomnd
     - ireturn
     - lll
-    - maintidx
     - nestif
     - paralleltest
     - tagliatelle
@@ -44,7 +40,11 @@ linters:
     - thelper
     - varnamelen
     - wrapcheck
-    - dupl
     # Temp
-    - goerr113
     - contextcheck
+    - cyclop
+    - errorlint
+    - gocognit
+    - goerr113
+    - gomnd
+    - maintidx
