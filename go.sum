@@ -1,5 +1,5 @@
 github.com/go-test/deep v1.1.0 h1:WOcxcdHcvdgThNXjw0t76K42FXTU7HpNQWHpA2HHNlg=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/kyberbits/forge v0.0.26 h1:5uMFXJtq43VLIJj6DfEW3kc6LGEC3K5BvODUFVOoCew=
-github.com/kyberbits/forge v0.0.26/go.mod h1:i0OLfy/iPjBeksHc3dBKi6omxobl0jKwDON1tVgFQj0=
+github.com/kyberbits/forge v0.0.31 h1:/EzIBWKqi0qw1ViboVdTY8RNwCCG1RqLbjWLS3KVrH4=
+github.com/kyberbits/forge v0.0.31/go.mod h1:i0OLfy/iPjBeksHc3dBKi6omxobl0jKwDON1tVgFQj0=
