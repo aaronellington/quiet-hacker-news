@@ -49,3 +49,9 @@ linters:
     - goerr113
     - gomnd
     - maintidx
+
+linters-settings:
+  revive:
+    rules:
+      - name: unexported-return
+        disabled: true
