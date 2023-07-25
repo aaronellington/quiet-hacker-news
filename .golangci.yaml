@@ -26,6 +26,7 @@ linters:
     - structcheck
     - varcheck
     # Don't care for
+    - depguard
     - dupl
     - exhaustive
     - exhaustruct
