@@ -1,5 +1,5 @@
 ## Build the Go package
-FROM golang:1.20-buster as goBuilder
+FROM golang:1.21-buster as goBuilder
 WORKDIR /workspace/
 COPY . .
 RUN make clean build-go
