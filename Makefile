@@ -32,7 +32,7 @@ lint: lint-go
 lint-go:
 	go get -d ./...
 	go mod tidy
-	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.55
 	golangci-lint run ./...
 
 ## Fix the project
