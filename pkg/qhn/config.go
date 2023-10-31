@@ -1,6 +1,8 @@
 package qhn
 
-import "github.com/kyberbits/forge/forge"
+import (
+	"github.com/aaronellington/environment-go/environment"
+)
 
 type Config struct {
 	Host                   string `env:"HOST"`
@@ -9,7 +11,7 @@ type Config struct {
 	PageSize               int    `env:"QHN_PAGE_SIZE"`
 }
 
-func buildConfig(environment forge.Environment) (*Config, error) {
+func buildConfig(environment *environment.Environment) (*Config, error) {
 	// Defaults
 	config := &Config{
 		Host:                   "0.0.0.0",

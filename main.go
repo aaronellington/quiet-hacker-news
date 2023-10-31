@@ -10,10 +10,6 @@ import (
 func main() {
 	runtime := forge.NewRuntime()
 
-	if err := runtime.ReadInDefaultEnvironmentFiles(); err != nil {
-		panic(err)
-	}
-
 	app, err := qhn.Setup(runtime)
 	if err != nil {
 		panic(err)
