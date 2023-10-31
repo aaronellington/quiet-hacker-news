@@ -36,6 +36,7 @@ linters:
     - lll
     - nestif
     - paralleltest
+    - perfsprint
     - tagliatelle
     - testpackage
     - thelper
