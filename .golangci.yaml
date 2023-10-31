@@ -28,6 +28,7 @@ linters:
     # Don't care for
     - depguard
     - dupl
+    - errname
     - exhaustive
     - exhaustruct
     - funlen
