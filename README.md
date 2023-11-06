@@ -22,4 +22,4 @@ A quieter approach to Hacker News. Links and nothing else.
     - Run for local development: `make dev`
     - See [Makefile](/Makefile) for additional targets
 - From Docker Image:
-    - `docker run -p 2222:2222 aaronellington/quiet-hacker-news`
+    - `docker run -p 2222:2222 ghcr.io/aaronellington/quiet-hacker-news`
