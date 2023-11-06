@@ -62,8 +62,8 @@ docs-go:
 
 ## Build the Docker image
 docker: clean
-	docker build -t aaronellington/quiet-hacker-news .
+	docker build -t ghcr.io/aaronellington/quiet-hacker-news:latest .
 
 ## Build the Docker image
 docker-publish: clean docker
-	docker push aaronellington/quiet-hacker-news
+	docker push ghcr.io/aaronellington/quiet-hacker-news:latest
