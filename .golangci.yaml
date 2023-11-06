@@ -1,0 +1,59 @@
+issues:
+  max-issues-per-linter: 0
+  new: false
+  max-same-issues: 0
+  fix: true
+
+output:
+  print-issued-lines: false
+  print-linter-name: true
+  uniq-by-line: false
+  path-prefix: ''
+  sort-results: true
+
+linters:
+  enable-all: true
+  disable:
+    # deprecated
+    - deadcode
+    - exhaustivestruct
+    - golint
+    - ifshort
+    - interfacer
+    - maligned
+    - nosnakecase
+    - scopelint
+    - structcheck
+    - varcheck
+    # Don't care for
+    - depguard
+    - dupl
+    - errname
+    - exhaustive
+    - exhaustruct
+    - funlen
+    - godox
+    - ireturn
+    - lll
+    - nestif
+    - paralleltest
+    - perfsprint
+    - tagliatelle
+    - testpackage
+    - thelper
+    - varnamelen
+    - wrapcheck
+    # Temp
+    - contextcheck
+    - cyclop
+    - errorlint
+    - gocognit
+    - goerr113
+    - gomnd
+    - maintidx
+
+linters-settings:
+  revive:
+    rules:
+      - name: unexported-return
+        disabled: true

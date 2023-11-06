@@ -1,12 +1,13 @@
-FROM golang:1.19-buster as goBuilder
-WORKDIR /staging
+## Build the Go package
+FROM golang:1.21-buster as goBuilder
+WORKDIR /workspace/
 COPY . .
-RUN make build-go
+RUN make clean build-go
 
 FROM debian:buster
-WORKDIR /app
+WORKDIR /workspace/
 RUN apt-get update
 RUN apt-get install -y ca-certificates
-COPY --from=goBuilder /staging/var/build ./build
+COPY --from=goBuilder /workspace/var/build ./build
 CMD ["./build"]
 EXPOSE 2222

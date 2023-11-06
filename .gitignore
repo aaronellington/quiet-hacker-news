@@ -1,8 +1,11 @@
-# Temporary Files
+# System
+.DS_Store
+
+# Temp
 /var/
 
-# Project Config and Secrets
+# Secrets
 /.env*local
 
-# Go Temporary Files
+# Go
 __debug_bin

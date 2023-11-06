@@ -3,7 +3,6 @@ package qhn
 import (
 	"net/http"
 
-	"github.com/aaronellington/quiet-hacker-news/resources"
 	"github.com/kyberbits/forge/forge"
 )
 
@@ -14,6 +13,6 @@ type APIResponse struct {
 func (app *App) handlerRoot() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		handlerContext := forge.NewHandlerContext(w, r)
-		handlerContext.ExecuteTemplate(resources.Index, app.hackernewsItems)
+		handlerContext.ExecuteTemplate(app.resources.Index, app.hackernewsItems)
 	})
 }

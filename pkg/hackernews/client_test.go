@@ -1,6 +1,7 @@
 package hackernews
 
 import (
+	"context"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -8,10 +9,12 @@ import (
 )
 
 func TestClient_TopStories(t *testing.T) {
+	ctx := context.Background()
+
 	responseBytes := []byte("")
 	responseCode := http.StatusOK
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write(responseBytes)
+		_, _ = w.Write(responseBytes)
 		w.WriteHeader(responseCode)
 	}))
 	c := Client{
@@ -45,9 +48,10 @@ func TestClient_TopStories(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.preTestHook()
-			got, err := c.TopStories()
+			got, err := c.TopStories(ctx)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Client.TopStories() error = %v, wantErr %v", err, tt.wantErr)
+
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
@@ -58,10 +62,12 @@ func TestClient_TopStories(t *testing.T) {
 }
 
 func TestClient_Item(t *testing.T) {
+	ctx := context.Background()
+
 	responseBytes := []byte("")
 	responseCode := http.StatusOK
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write(responseBytes)
+		_, _ = w.Write(responseBytes)
 		w.WriteHeader(responseCode)
 	}))
 	c := Client{
@@ -98,9 +104,10 @@ func TestClient_Item(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.preTestHook()
 
-			got, err := c.Item(tt.args.id)
+			got, err := c.Item(ctx, tt.args.id)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Client.Item() error = %v, wantErr %v", err, tt.wantErr)
+
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {

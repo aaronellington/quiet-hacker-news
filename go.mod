@@ -1,7 +1,10 @@
 module github.com/aaronellington/quiet-hacker-news
 
-go 1.19
+go 1.21
 
 require github.com/google/uuid v1.3.0 // indirect
 
-require github.com/kyberbits/forge v0.0.18
+require (
+	github.com/aaronellington/environment-go v0.0.2
+	github.com/kyberbits/forge v0.0.44
+)
