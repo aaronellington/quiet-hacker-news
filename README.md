@@ -1,7 +1,7 @@
 # [Quiet Hacker News](https://quiet-hacker-news.appbyte.net/)
 
 <!-- aaronellington/stencil -->
-[![Go](https://github.com/aaronellington/quiet-hacker-news/actions/workflows/go.yml/badge.svg)](https://github.com/aaronellington/quiet-hacker-news/actions/workflows/go.yml) [![Go Reference](https://pkg.go.dev/badge/github.com/aaronellington/quiet-hacker-news.svg)](https://pkg.go.dev/github.com/aaronellington/quiet-hacker-news) [![Go Report Card](https://goreportcard.com/badge/github.com/aaronellington/quiet-hacker-news)](https://goreportcard.com/report/github.com/aaronellington/quiet-hacker-news)
+[![Go](https://github.com/aaronellington/quiet-hacker-news/actions/workflows/main.yml/badge.svg)](https://github.com/aaronellington/quiet-hacker-news/actions/workflows/main.yml) [![Go Reference](https://pkg.go.dev/badge/github.com/aaronellington/quiet-hacker-news.svg)](https://pkg.go.dev/github.com/aaronellington/quiet-hacker-news) [![Go Report Card](https://goreportcard.com/badge/github.com/aaronellington/quiet-hacker-news)](https://goreportcard.com/report/github.com/aaronellington/quiet-hacker-news)
 <!-- aaronellington/stencil -->
 
 A quieter approach to Hacker News. Links and nothing else.
