@@ -8,7 +8,7 @@ output:
   print-issued-lines: false
   print-linter-name: true
   uniq-by-line: false
-  path-prefix: ''
+  path-prefix: ""
   sort-results: true
 
 linters:
