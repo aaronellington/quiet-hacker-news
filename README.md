@@ -1,4 +1,4 @@
-# [Quiet Hacker News](https://quiet-hacker-news.appbyte.net/)
+# [Quiet Hacker News](https://quiet-hacker-news.apps.ellington.io/)
 
 <!-- aaronellington/stencil -->
 [![Go](https://github.com/aaronellington/quiet-hacker-news/actions/workflows/main.yml/badge.svg)](https://github.com/aaronellington/quiet-hacker-news/actions/workflows/main.yml) [![Go Reference](https://pkg.go.dev/badge/github.com/aaronellington/quiet-hacker-news.svg)](https://pkg.go.dev/github.com/aaronellington/quiet-hacker-news) [![Go Report Card](https://goreportcard.com/badge/github.com/aaronellington/quiet-hacker-news)](https://goreportcard.com/report/github.com/aaronellington/quiet-hacker-news)
