@@ -1,6 +1,7 @@
 github.com/aaronellington/environment-go v0.0.2 h1:24NtQr/EpNj0OiYMJ+wjFHyCkwkDBkCnD6G83Z41Nuo=
 github.com/aaronellington/environment-go v0.0.2/go.mod h1:8poF+ihMqc90QMSaIj9rxGcaI/412g9cqG1TR6BWZ6E=
 github.com/go-test/deep v1.1.0 h1:WOcxcdHcvdgThNXjw0t76K42FXTU7HpNQWHpA2HHNlg=
+github.com/go-test/deep v1.1.0/go.mod h1:5C2ZWiW0ErCdrYzpqxLbTX7MG14M9iiw8DgHncVwcsE=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/kyberbits/forge v0.0.44 h1:b2yyf+axBUFpsxepK9zqxvlGLaB1iXV8PLFY5kDsO/E=

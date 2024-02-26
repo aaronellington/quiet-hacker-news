@@ -15,6 +15,7 @@ type TemplatePayload struct {
 
 func (app *App) handlerRoot() http.Handler {
 	now := time.Now()
+
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		handlerContext := forge.NewHandlerContext(w, r)
 		handlerContext.ExecuteTemplate(app.resources.Index, TemplatePayload{
