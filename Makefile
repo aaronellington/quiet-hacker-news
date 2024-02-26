@@ -48,7 +48,7 @@ watch:
 
 watch-go:
 	@go install github.com/mitranim/gow@latest
-	gow run .
+	gow -e=go,html run . | jq
 
 ## Clean the project
 clean:
